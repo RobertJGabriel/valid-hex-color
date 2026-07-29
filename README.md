@@ -1,37 +1,37 @@
-# valid-hex-color [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
-> Check if hex color is in the valid range.
+# valid-hex-color
 
-## Installation
+> Check whether a hex colour value is valid.
+
+[![npm](https://img.shields.io/npm/v/valid-hex-color.svg)](https://www.npmjs.com/package/valid-hex-color)
+
+## Install
 
 ```sh
-$ npm install --save valid-hex-color
+npm install valid-hex-color
 ```
 
 ## Usage
 
 ```js
-const validHexColor = require('valid-hex-color');
+const { check } = require('valid-hex-color');
 
-validHexColor.check('#fff');
-// True
-
-validHexColor.check('#ffffff');
-// false
-
-validHexColor.check('#9999sj');
-// false
-
+check('#fff');      //=> true
+check('#ffffff');   //=> true
+check('ffffff');    //=> false  (leading # is required)
+check('#ffff');     //=> false
+check(0xffffff);    //=> false  (must be a string)
 ```
+
+## API
+
+### check(hex)
+
+Returns `true` for a string matching three or six hex digits **preceded by `#`**,
+otherwise `false`. Anything that is not a string returns `false`.
+
+The pattern is `/^#([A-Fa-f0-9]{3}([A-Fa-f0-9]{3})?)$/`, so four- and
+eight-digit values with alpha are not accepted.
+
 ## License
 
-Apache-2.0 © [Robert James Gabriel](https://www.robertgabriel.ninja)
-
-
-[npm-image]: https://badge.fury.io/js/valid-hex-color.svg
-[npm-url]: https://npmjs.org/package/valid-hex-color
-[travis-image]: https://travis-ci.org/RobertJGabriel/valid-hex-color.svg?branch=master
-[travis-url]: https://travis-ci.org/RobertJGabriel/valid-hex-color
-[daviddm-image]: https://david-dm.org/RobertJGabriel/valid-hex-color.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/RobertJGabriel/valid-hex-color
-[coveralls-image]: https://coveralls.io/repos/RobertJGabriel/valid-hex-color/badge.svg
-[coveralls-url]: https://coveralls.io/r/RobertJGabriel/valid-hex-color
+Apache-2.0 © Robert James Gabriel
